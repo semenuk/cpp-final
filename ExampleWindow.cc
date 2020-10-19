@@ -38,6 +38,7 @@ void ExampleWindow::setup()
 
 void ExampleWindow::render()
 {
+	// Очистка экрана
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
 	glLoadIdentity();
@@ -48,6 +49,8 @@ void ExampleWindow::render()
 
 	glRotated(_angle, 0., 0., 1.);
 
+
+	// Начинает рисовать прямоугольник
 	glBegin(GL_QUADS);
 
 	glNormal3d(  1.,  0.,  0.);
@@ -92,14 +95,17 @@ void ExampleWindow::render()
 	glVertex3d( -1., -1., -1.);
 	glVertex3d(  1., -1., -1.);
 
+	// Заканчивает рисовать прямоугольник
 	glEnd();
 }
 
 void ExampleWindow::handle_logic()
 {
+	// Вращает изображение по горизонтали
 	_angle += 1.;
 	if (_angle >= 360.)
 		_angle -= 360.;
 
+	// Вращает изображение по вертикали
 	_eye_level = sin(_angle / 180. * Pi);
 }

@@ -13,18 +13,20 @@
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_main.h>
 
-#include "ExampleWindow.h"
+#include "MyWindow.h"
 
 
 // Самая главная функция!
 int main(int, char**)
 {
+
 	// Инициализация SDL
 	SDL_Init(SDL_INIT_EVERYTHING);
 
 	try {
 
-		ExampleWindow w;
+
+		MyWindow w;
 
 		w.main_loop();
 
