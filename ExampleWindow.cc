@@ -27,10 +27,14 @@ static const float s_material_yellow[4]  { 1.f, 1.f, 0.f, 1.f };
 
 void ExampleWindow::setup()
 {
+	// Включает тест глубины
 	glEnable(GL_DEPTH_TEST);
+	// Разрешаем освещение и включаем нулевую лампу
 	glEnable(GL_LIGHTING);
 	glEnable(GL_LIGHT0);
+	// Задает значения очистки цветом буфера цвета
 	glClearColor(0.15f, 0.15f, 0.4f, 1.0f);
+	// Устанавливает перспективу
 	glMatrixMode(GL_PROJECTION);
 	gluPerspective(45., double(width()) / double(height()), 0.01, 20.0);
 	glMatrixMode(GL_MODELVIEW);
@@ -41,23 +45,32 @@ void ExampleWindow::render()
 	// Очистка экрана
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
+	// Cчитывает текущую матрицу
 	glLoadIdentity();
+	// Устанавливает точку наблюдения, камеру
 	gluLookAt(
 			5., 5., 5. * _eye_level,
 			0., 0., 0.,
 			0., 0., 1.);
 
+	// Поворот сцены, регулируется параметром _angle
 	glRotated(_angle, 0., 0., 1.);
 
 
-	// Начинает рисовать прямоугольник
+	// Начинает рисовать прямоугольники
 	glBegin(GL_QUADS);
 
+	// Задается нормаль
 	glNormal3d(  1.,  0.,  0.);
+	// Устанавливает свойства материала
 	glMaterialfv(GL_FRONT_AND_BACK, GL_DIFFUSE, s_material_red);
+	// Задает координаты первой точки прямоугольника
 	glVertex3d(  1., -1.,  1.);
+	// Задает координаты второй точки прямоугольника
 	glVertex3d(  1.,  1.,  1.);
+	// Задает координаты третьей точки прямоугольника
 	glVertex3d(  1.,  1., -1.);
+	// Задает координаты четвертой точки прямоугольника
 	glVertex3d(  1., -1., -1.);
 
 	glNormal3d( -1.,  0.,  0.);
@@ -95,7 +108,7 @@ void ExampleWindow::render()
 	glVertex3d( -1., -1., -1.);
 	glVertex3d(  1., -1., -1.);
 
-	// Заканчивает рисовать прямоугольник
+	// Заканчивает рисовать прямоугольники
 	glEnd();
 }
 
